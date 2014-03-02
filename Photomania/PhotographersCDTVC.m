@@ -8,8 +8,19 @@
 
 #import "PhotographersCDTVC.h"
 #import "Photographer.h"
+#import "PhotoDatabaseAvailability.h"
 
 @implementation PhotographersCDTVC
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [[NSNotificationCenter defaultCenter] addObserverForName:PhotoDatabaseAvailabilityNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      self.managedObjectContext = note.userInfo[PhotoDatabaseAvailabilityContext];
+                                                  }];
+}
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     
@@ -17,9 +28,9 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photographer"];
     request.predicate = nil;
-    request.sortDescriptors = [NSSortDescriptor sortDescriptorWithKey:@"name"
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                             ascending:YES
-                                                             selector:@selector(localizedStandardCompare:)];
+                                                             selector:@selector(localizedStandardCompare:)]];
     //request.fetchLimit = 100;
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
