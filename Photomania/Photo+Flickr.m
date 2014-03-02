@@ -37,14 +37,13 @@
         photo.imageURL = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
         
         NSString *photographerName = [photoDictionary valueForKeyPath:FLICKR_PHOTO_OWNER];
-        
         photo.whoTook = [Photographer photographerWithName:photographerName inManagedObjectContext:context];
     }
     
     return photo;
 }
 
-+ (void)loadPhotosFromFlickrArray:(NSArray *)photos //of NSDictionary
++ (void)loadPhotosFromFlickrArray:(NSArray *)photos //of Flickr NSDictionary
          intoManagedObjectContext:(NSManagedObjectContext *)context {
     
     for (NSDictionary *photo in photos) {

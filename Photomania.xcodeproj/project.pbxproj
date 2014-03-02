@@ -15,7 +15,6 @@
 		6AF93AC818C36C9E009AF4B6 /* PhotomaniaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF93AC718C36C9E009AF4B6 /* PhotomaniaAppDelegate.m */; };
 		6AF93ACB18C36C9E009AF4B6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF93AC918C36C9E009AF4B6 /* Main_iPhone.storyboard */; };
 		6AF93ACE18C36C9E009AF4B6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF93ACC18C36C9E009AF4B6 /* Main_iPad.storyboard */; };
-		6AF93AD118C36C9E009AF4B6 /* PhotomaniaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF93AD018C36C9E009AF4B6 /* PhotomaniaViewController.m */; };
 		6AF93AD318C36C9E009AF4B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AF93AD218C36C9E009AF4B6 /* Images.xcassets */; };
 		6AF93ADA18C36C9E009AF4B6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF93AD918C36C9E009AF4B6 /* XCTest.framework */; };
 		6AF93ADB18C36C9E009AF4B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF93AB718C36C9E009AF4B6 /* Foundation.framework */; };
@@ -56,8 +55,6 @@
 		6AF93AC718C36C9E009AF4B6 /* PhotomaniaAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotomaniaAppDelegate.m; sourceTree = "<group>"; };
 		6AF93ACA18C36C9E009AF4B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		6AF93ACD18C36C9E009AF4B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		6AF93ACF18C36C9E009AF4B6 /* PhotomaniaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotomaniaViewController.h; sourceTree = "<group>"; };
-		6AF93AD018C36C9E009AF4B6 /* PhotomaniaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotomaniaViewController.m; sourceTree = "<group>"; };
 		6AF93AD218C36C9E009AF4B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6AF93AD818C36C9E009AF4B6 /* PhotomaniaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotomaniaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF93AD918C36C9E009AF4B6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -158,8 +155,6 @@
 				6AF93AF918C37704009AF4B6 /* Photographer.m */,
 				6AF93AC618C36C9E009AF4B6 /* PhotomaniaAppDelegate.h */,
 				6AF93AC718C36C9E009AF4B6 /* PhotomaniaAppDelegate.m */,
-				6AF93ACF18C36C9E009AF4B6 /* PhotomaniaViewController.h */,
-				6AF93AD018C36C9E009AF4B6 /* PhotomaniaViewController.m */,
 				6AF93AD218C36C9E009AF4B6 /* Images.xcassets */,
 				6AF93B0918C3A1ED009AF4B6 /* CoreDataTableViewController */,
 				6AF93B0118C37904009AF4B6 /* FlickrFetcher */,
@@ -340,7 +335,6 @@
 				6AF93B0818C37BA8009AF4B6 /* Photographer+Create.m in Sources */,
 				6AF93B0C18C3A1ED009AF4B6 /* CoreDataTableViewController.m in Sources */,
 				6AF93AC418C36C9E009AF4B6 /* main.m in Sources */,
-				6AF93AD118C36C9E009AF4B6 /* PhotomaniaViewController.m in Sources */,
 				6AF93AFA18C37704009AF4B6 /* Photographer.m in Sources */,
 				6AF93B0518C37904009AF4B6 /* FlickrFetcher.m in Sources */,
 				6AF93AF118C3756A009AF4B6 /* Photomania.xcdatamodeld in Sources */,
