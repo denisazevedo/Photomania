@@ -22,6 +22,9 @@
 		6AF93ADC18C36C9E009AF4B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF93ABB18C36C9E009AF4B6 /* UIKit.framework */; };
 		6AF93AE418C36C9E009AF4B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AF93AE218C36C9E009AF4B6 /* InfoPlist.strings */; };
 		6AF93AE618C36C9E009AF4B6 /* PhotomaniaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF93AE518C36C9E009AF4B6 /* PhotomaniaTests.m */; };
+		6AF93AF118C3756A009AF4B6 /* Photomania.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6AF93AEF18C3756A009AF4B6 /* Photomania.xcdatamodeld */; };
+		6AF93AFA18C37704009AF4B6 /* Photographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF93AF918C37704009AF4B6 /* Photographer.m */; };
+		6AF93AFD18C37705009AF4B6 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF93AFC18C37705009AF4B6 /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,11 @@
 		6AF93AE118C36C9E009AF4B6 /* PhotomaniaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotomaniaTests-Info.plist"; sourceTree = "<group>"; };
 		6AF93AE318C36C9E009AF4B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6AF93AE518C36C9E009AF4B6 /* PhotomaniaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotomaniaTests.m; sourceTree = "<group>"; };
+		6AF93AF018C3756A009AF4B6 /* Photomania.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Photomania.xcdatamodel; sourceTree = "<group>"; };
+		6AF93AF818C37704009AF4B6 /* Photographer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photographer.h; sourceTree = "<group>"; };
+		6AF93AF918C37704009AF4B6 /* Photographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photographer.m; sourceTree = "<group>"; };
+		6AF93AFB18C37705009AF4B6 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		6AF93AFC18C37705009AF4B6 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,11 @@
 		6AF93ABD18C36C9E009AF4B6 /* Photomania */ = {
 			isa = PBXGroup;
 			children = (
+				6AF93AEF18C3756A009AF4B6 /* Photomania.xcdatamodeld */,
+				6AF93AFB18C37705009AF4B6 /* Photo.h */,
+				6AF93AFC18C37705009AF4B6 /* Photo.m */,
+				6AF93AF818C37704009AF4B6 /* Photographer.h */,
+				6AF93AF918C37704009AF4B6 /* Photographer.m */,
 				6AF93AC618C36C9E009AF4B6 /* PhotomaniaAppDelegate.h */,
 				6AF93AC718C36C9E009AF4B6 /* PhotomaniaAppDelegate.m */,
 				6AF93AC918C36C9E009AF4B6 /* Main_iPhone.storyboard */,
@@ -254,9 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF93AFD18C37705009AF4B6 /* Photo.m in Sources */,
 				6AF93AC818C36C9E009AF4B6 /* PhotomaniaAppDelegate.m in Sources */,
 				6AF93AC418C36C9E009AF4B6 /* main.m in Sources */,
 				6AF93AD118C36C9E009AF4B6 /* PhotomaniaViewController.m in Sources */,
+				6AF93AFA18C37704009AF4B6 /* Photographer.m in Sources */,
+				6AF93AF118C3756A009AF4B6 /* Photomania.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +501,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6AF93AEF18C3756A009AF4B6 /* Photomania.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6AF93AF018C3756A009AF4B6 /* Photomania.xcdatamodel */,
+			);
+			currentVersion = 6AF93AF018C3756A009AF4B6 /* Photomania.xcdatamodel */;
+			path = Photomania.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6AF93AAC18C36C9E009AF4B6 /* Project object */;
 }
