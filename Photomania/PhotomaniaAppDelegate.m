@@ -113,11 +113,11 @@ didFinishDownloadingToURL:(NSURL *)localFile {
         if (context) {
             NSArray *photos = [self flickrPhotosAtURL:localFile];
             [context performBlock:^{
-                [Photo loadPhotosFromFlickrArray:photos intoManagedObjectContent:context];
+                [Photo loadPhotosFromFlickrArray:photos intoManagedObjectContext:context];
                 [context save:NULL];
             }];
         } else {
-            [self flickrDownloadTasksMightBeCompleted];
+            [self flickrDownloadTasksMightBeComplete];
         }
     }
 }
@@ -139,7 +139,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     
 }
 
-- (void)flickrDownloadTasksMightBeCompleted {
+- (void)flickrDownloadTasksMightBeComplete {
     [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
         if (![downloadTasks count]) { //No more downloads left?
             void (^completionHandler)() = self.flickrDownloadBackgroundURLSessionCompletionHandler;

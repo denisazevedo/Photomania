@@ -44,8 +44,8 @@
     return photo;
 }
 
-+ (void)loadPhotosFromFlickrArray:(NSArray *)photos
-         intoManagedObjectContent:(NSManagedObjectContext *)context {
++ (void)loadPhotosFromFlickrArray:(NSArray *)photos //of NSDictionary
+         intoManagedObjectContext:(NSManagedObjectContext *)context {
     
     for (NSDictionary *photo in photos) {
         [self photoWithFlickrInfo:photo inManagedObjectContext:context];
