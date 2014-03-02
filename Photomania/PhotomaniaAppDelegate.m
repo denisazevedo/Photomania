@@ -49,10 +49,22 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 
 - (void)setPhotoDatabaseContext:(NSManagedObjectContext *)photoDatabaseContext {
     _photoDatabaseContext = photoDatabaseContext;
+    
+    [NSTimer scheduledTimerWithTimeInterval:20*60
+                                     target:self
+                                   selector:@selector(startFlickrFetch:)
+                                   userInfo:nil
+                                    repeats:YES];
+    
     NSDictionary *userInfo = self.photoDatabaseContext ? @{PhotoDatabaseAvailabilityContext : self.photoDatabaseContext} : nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:PhotoDatabaseAvailabilityNotification
                                                         object:self
                                                       userInfo:userInfo];
+}
+
+- (void)startFlickrFetch:(NSTimer *)timer {
+    NSLog(@"Start Flickr Fetch with timer...");
+    [self startFlickrFetch];
 }
 
 - (void)startFlickrFetch {
