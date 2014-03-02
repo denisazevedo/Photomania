@@ -33,6 +33,20 @@
     return YES;
 }
 
+- (void)application:(UIApplication *)application
+performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    [self startFlickrFetch]; //Background session fetch
+    completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (void)application:(UIApplication *)application
+handleEventsForBackgroundURLSession:(NSString *)identifier
+  completionHandler:(void (^)())completionHandler {
+  
+    self.flickrDownloadBackgroundURLSessionCompletionHandler = completionHandler;
+}
+
 - (void)setPhotoDatabaseContext:(NSManagedObjectContext *)photoDatabaseContext {
     _photoDatabaseContext = photoDatabaseContext;
     NSDictionary *userInfo = self.photoDatabaseContext ? @{PhotoDatabaseAvailabilityContext : self.photoDatabaseContext} : nil;
@@ -114,7 +128,15 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
 }
 
 - (void)flickrDownloadTasksMightBeCompleted {
-    //TODO
+    [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        if (![downloadTasks count]) { //No more downloads left?
+            void (^completionHandler)() = self.flickrDownloadBackgroundURLSessionCompletionHandler;
+            self.flickrDownloadBackgroundURLSessionCompletionHandler = nil;
+            if (completionHandler) {
+                completionHandler();
+            }
+        }
+    }];
 }
 
 @end

@@ -274,6 +274,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Denis C de Azevedo";
 				TargetAttributes = {
+					6AF93AB318C36C9E009AF4B6 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					6AF93AD718C36C9E009AF4B6 = {
 						TestTargetID = 6AF93AB318C36C9E009AF4B6;
 					};
