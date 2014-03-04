@@ -55,14 +55,17 @@
 #pragma mark - Navigation
 
 - (void)prepareViewController:(id)vc forSegue:(NSString *)segueIdentifier fromIndexPath:(NSIndexPath *)indexPath {
-    
+
     Photographer *photographer = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    // note that we don't check the segue identifier here
+    // probably fine ... hard to imagine any other way this class would segue to PhotosByPhotographerCDTVC
     if ([vc isKindOfClass:[PhotosByPhotographerCDTVC class]]) {
         PhotosByPhotographerCDTVC *pbpcdtvc = (PhotosByPhotographerCDTVC *)vc;
         pbpcdtvc.photographer = photographer;
     }
 }
 
+//boilerplate
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = nil;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
@@ -71,6 +74,7 @@
     [self prepareViewController:segue.destinationViewController forSegue:segue.identifier fromIndexPath:indexPath];
 }
 
+//boilerplate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     id detailVC = [self.splitViewController.viewControllers lastObject];
     if ([detailVC isKindOfClass:[UINavigationController class]]) {

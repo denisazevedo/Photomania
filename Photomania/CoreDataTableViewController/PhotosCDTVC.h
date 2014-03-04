@@ -10,7 +10,9 @@
 
 @interface PhotosCDTVC : CoreDataTableViewController
 
-//Hook up fetchedResultsController to any Photo fetch request
-//Use @"Photo Cell" as your table view cell's reuse id
+// generic Photo displaying CDTVC
+// hook up fetchedResultsController to any Photo fetch request
+// use @"Photo Cell" as your table view cell's reuse id
+// will segue to showing the image in an ImageViewController
 
 @end

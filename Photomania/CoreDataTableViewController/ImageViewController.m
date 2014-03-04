@@ -14,7 +14,8 @@
 @property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-//Sets nil to the pointer when the popover is gone
+// this is weak because we want it to go back to nil
+//   when no one else has strong pointer to the popover (i.e. it is dismissed)
 @property (weak, nonatomic) UIPopoverController *urlPopoverController;
 @end
 
@@ -84,9 +85,13 @@
 
 #pragma mark - Navigation
 
+// show our imageURL in a popover
+// stash the popover so that we can ensure that only one appears at a time
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:[URLViewController class]]) {
         URLViewController *urlVC = (URLViewController *)segue.destinationViewController;
+         // if we are segueing to a popover, the segue itself will be a UIStoryboardPopoverSegue
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
             UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
             self.urlPopoverController = popoverSegue.popoverController;
@@ -94,6 +99,8 @@
         urlVC.url = self.imageURL;
     }
 }
+
+// don't show the URL if it's already showing or we don't have a URL to show
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"Show URL"]) {
@@ -109,6 +116,10 @@
     _imageURL = imageURL;
     //    self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.imageURL]]; // blocks main queue!
     [self startDownloadingImage];
+    
+    // in portrait orientation on an iPad in a split view,
+    //   unfortunately the master can be access while popover is up
+    //   (so dismiss the URL if someone changes our image from there)
     [self.urlPopoverController dismissPopoverAnimated:YES];
 }
 
@@ -156,7 +167,7 @@
 - (BOOL)splitViewController:(UISplitViewController *)svc
    shouldHideViewController:(UIViewController *)vc
               inOrientation:(UIInterfaceOrientation)orientation {
-    return UIDeviceOrientationIsPortrait(orientation);
+    return UIInterfaceOrientationIsPortrait(orientation);
 }
 
 - (void)splitViewController:(UISplitViewController *)svc
@@ -171,7 +182,7 @@
 - (void)splitViewController:(UISplitViewController *)svc
      willShowViewController:(UIViewController *)aViewController
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-    self.navigationItem.title = nil;
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 @end

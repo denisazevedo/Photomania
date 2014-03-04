@@ -157,7 +157,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IOa-2b-7Oc">
-                        <barButtonItem key="rightBarButtonItem" title="URL" id="lMH-b4-onp"/>
+                        <barButtonItem key="rightBarButtonItem" title="URL" id="lMH-b4-onp">
+                            <connections>
+                                <segue destination="Iav-tw-HZa" kind="push" id="Maj-cx-mAW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="a3a-sh-kJf" id="mSv-vD-ge2"/>
@@ -167,6 +171,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmn-Lv-dsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1220" y="-473"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wcL-mb-rZi">
+            <objects>
+                <viewController id="Iav-tw-HZa" customClass="URLViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2NS-tJ-6Th"/>
+                        <viewControllerLayoutGuide type="bottom" id="iju-3z-S0F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="28u-g6-raE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="http://www.stanford.edu" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="B6F-gd-Irm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="B6F-gd-Irm" secondAttribute="trailing" id="728-a4-xGc"/>
+                            <constraint firstAttribute="bottom" secondItem="B6F-gd-Irm" secondAttribute="bottom" id="Va2-ot-buA"/>
+                            <constraint firstItem="B6F-gd-Irm" firstAttribute="top" secondItem="28u-g6-raE" secondAttribute="top" id="fZL-SX-RQj"/>
+                            <constraint firstItem="B6F-gd-Irm" firstAttribute="leading" secondItem="28u-g6-raE" secondAttribute="leading" id="g7E-iZ-9dP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QLP-tw-oD0"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="600" height="40"/>
+                    <connections>
+                        <outlet property="urlTextView" destination="B6F-gd-Irm" id="qh1-Kd-gae"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uGC-uh-15c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="-473"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

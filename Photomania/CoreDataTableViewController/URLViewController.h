@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+// displays the url
+// it is not a popover-specific class in any way
+// it would work in any environment
+// (e.g. pushed in a navigation controller would work)
+
 @interface URLViewController : UIViewController
 
 @property (nonatomic, strong) NSURL *url;

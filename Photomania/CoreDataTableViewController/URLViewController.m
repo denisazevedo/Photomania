@@ -19,7 +19,7 @@
     [self updateUI];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad { // updateUI here in case our url property was set before outlets loaded
     [super viewDidLoad];
     [self updateUI];
 }

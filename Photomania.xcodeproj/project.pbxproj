@@ -233,8 +233,6 @@
 		6AF93B0918C3A1ED009AF4B6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6A4DF64E18C644DD00A734FA /* URLViewController.h */,
-				6A4DF64F18C644DD00A734FA /* URLViewController.m */,
 				6A4DF64818C538B600A734FA /* PhotosByPhotographerCDTVC.h */,
 				6A4DF64918C538B600A734FA /* PhotosByPhotographerCDTVC.m */,
 				6A4DF64B18C63F1C00A734FA /* PhotosCDTVC.h */,
@@ -243,6 +241,8 @@
 				6AF93B0E18C3A520009AF4B6 /* PhotographersCDTVC.m */,
 				6AF93B0A18C3A1ED009AF4B6 /* CoreDataTableViewController.h */,
 				6AF93B0B18C3A1ED009AF4B6 /* CoreDataTableViewController.m */,
+				6A4DF64E18C644DD00A734FA /* URLViewController.h */,
+				6A4DF64F18C644DD00A734FA /* URLViewController.m */,
 				6A4DF64518C5372700A734FA /* ImageViewController.h */,
 				6A4DF64618C5372700A734FA /* ImageViewController.m */,
 			);
