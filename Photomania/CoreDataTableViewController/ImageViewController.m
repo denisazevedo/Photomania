@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+//Sets nil to the pointer when the popover is gone
+@property (weak, nonatomic) UIPopoverController *urlPopoverController;
 @end
 
 @implementation ImageViewController
@@ -85,7 +87,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:[URLViewController class]]) {
         URLViewController *urlVC = (URLViewController *)segue.destinationViewController;
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+            UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
+            self.urlPopoverController = popoverSegue.popoverController;
+        }
         urlVC.url = self.imageURL;
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"Show URL"]) {
+        return self.urlPopoverController ? NO : (self.imageURL ? YES : NO);
+    } else {
+        return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
     }
 }
 
@@ -95,6 +109,7 @@
     _imageURL = imageURL;
     //    self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.imageURL]]; // blocks main queue!
     [self startDownloadingImage];
+    [self.urlPopoverController dismissPopoverAnimated:YES];
 }
 
 - (void)startDownloadingImage {
