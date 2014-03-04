@@ -101,7 +101,15 @@
                             <constraint firstAttribute="centerY" secondItem="zNi-2M-TmB" secondAttribute="centerY" id="ylV-XB-C0K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2V9-c8-ndU"/>
+                    <navigationItem key="navigationItem" id="2V9-c8-ndU">
+                        <barButtonItem key="rightBarButtonItem" title="URL" id="dzA-FF-TRB">
+                            <connections>
+                                <segue destination="FNE-W3-1Wo" kind="popover" identifier="Show URL" popoverAnchorBarButtonItem="dzA-FF-TRB" id="2Lj-3w-lXs">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="qFM-oa-eWa" id="QKT-Ws-nBL"/>
                         <outlet property="spinner" destination="zNi-2M-TmB" id="vws-uh-FGF"/>
@@ -110,6 +118,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aps-PO-YgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1352" y="425"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0Zu-F5-mtH">
+            <objects>
+                <viewController id="FNE-W3-1Wo" customClass="URLViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mg8-Sl-qkO"/>
+                        <viewControllerLayoutGuide type="bottom" id="uos-ip-KRU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lB3-5A-lSz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="http://www.stanford.edu" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-WC-rLm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dkM-WC-rLm" firstAttribute="leading" secondItem="lB3-5A-lSz" secondAttribute="leading" id="0gD-tT-x5A"/>
+                            <constraint firstAttribute="trailing" secondItem="dkM-WC-rLm" secondAttribute="trailing" id="3U7-O0-MJ7"/>
+                            <constraint firstAttribute="bottom" secondItem="dkM-WC-rLm" secondAttribute="bottom" id="8Ux-bG-Elw"/>
+                            <constraint firstItem="dkM-WC-rLm" firstAttribute="top" secondItem="lB3-5A-lSz" secondAttribute="top" id="IA4-eB-xXc"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="600" height="40"/>
+                    <connections>
+                        <outlet property="urlTextView" destination="dkM-WC-rLm" id="h5A-bA-2g7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SzI-p5-oQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2318" y="425"/>
         </scene>
         <!--Navigation Controller - Photographers-->
         <scene sceneID="KNG-EH-nAn">

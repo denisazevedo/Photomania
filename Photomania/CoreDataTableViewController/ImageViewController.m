@@ -7,6 +7,7 @@
 //
 
 #import "ImageViewController.h"
+#import "URLViewController.h"
 
 @interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
@@ -77,6 +78,15 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.imageView;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.destinationViewController isKindOfClass:[URLViewController class]]) {
+        URLViewController *urlVC = (URLViewController *)segue.destinationViewController;
+        urlVC.url = self.imageURL;
+    }
 }
 
 #pragma mark - Setting the Image from the Image's URL
