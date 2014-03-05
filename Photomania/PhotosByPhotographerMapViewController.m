@@ -35,9 +35,12 @@
         view.canShowCallout = YES;
     }
     view.annotation = annotation;
-    [self updateLeftCalloutAccessoryViewInAnnotationView:view];
     
     return view;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    [self updateLeftCalloutAccessoryViewInAnnotationView:view]; 
 }
 
 - (void)updateLeftCalloutAccessoryViewInAnnotationView:(MKAnnotationView *)annotationView {
