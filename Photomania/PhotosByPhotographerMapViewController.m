@@ -8,6 +8,7 @@
 
 #import "PhotosByPhotographerMapViewController.h"
 #import <MapKit/MapKit.h>
+#import "Photo.h"
 
 @interface PhotosByPhotographerMapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -15,6 +16,47 @@
 @end
 
 @implementation PhotosByPhotographerMapViewController
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    static NSString *reuseId = @"PhotosByPhotographerMapViewController";
+    MKAnnotationView *view = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    if (!view) {
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 46, 46)];
+        view.leftCalloutAccessoryView = imageView;
+        
+        UIButton *disclosureButton = [[UIButton alloc] init];
+        [disclosureButton setBackgroundImage:[UIImage imageNamed:@"disclosure"] forState:UIControlStateNormal];
+        [disclosureButton sizeToFit];
+        view.rightCalloutAccessoryView = disclosureButton;
+        
+        view.canShowCallout = YES;
+    }
+    view.annotation = annotation;
+    [self updateLeftCalloutAccessoryViewInAnnotationView:view];
+    
+    return view;
+}
+
+- (void)updateLeftCalloutAccessoryViewInAnnotationView:(MKAnnotationView *)annotationView {
+    
+    UIImageView *imageView = nil;
+    if ([annotationView.leftCalloutAccessoryView isKindOfClass:[UIImageView class]]) {
+        imageView = (UIImageView *)annotationView.leftCalloutAccessoryView;
+    }
+    if (imageView) {
+        Photo *photo = nil;
+        if ([annotationView.annotation isKindOfClass:[Photo class]]) {
+            photo = (Photo *)annotationView.annotation;
+        }
+        if (photo) {
+#warning Blocking the main queue!
+            imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photo.thumbnailURL]]];
+        }
+    }
+}
 
 - (void)updateMapViewAnnotations {
     [self.mapView removeAnnotations:self.mapView.annotations];
