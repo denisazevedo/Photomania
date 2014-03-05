@@ -14,7 +14,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Photo Cell" textLabel="Nev-rn-eux" detailTextLabel="MHm-p7-Ypj" style="IBUITableViewCellStyleSubtitle" id="Ehu-jj-xS5">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehu-jj-xS5" id="UiX-DN-r3a">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -57,6 +57,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sxg-Od-Txc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="768" y="-473"/>
+        </scene>
+        <!--Photos By Photographer Map View Controller-->
+        <scene sceneID="Xyk-l3-C2E">
+            <objects>
+                <viewController id="VIu-zF-pxQ" customClass="PhotosByPhotographerMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tBX-6T-Zol"/>
+                        <viewControllerLayoutGuide type="bottom" id="o0I-dL-1e3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Wk-Ma-JOS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-f5-ghd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hwD-f5-ghd" secondAttribute="trailing" id="RS2-ik-Gj5"/>
+                            <constraint firstItem="hwD-f5-ghd" firstAttribute="leading" secondItem="5Wk-Ma-JOS" secondAttribute="leading" id="fwz-Bq-4jm"/>
+                            <constraint firstAttribute="bottom" secondItem="hwD-f5-ghd" secondAttribute="bottom" id="ps7-0K-Tkd"/>
+                            <constraint firstItem="hwD-f5-ghd" firstAttribute="top" secondItem="5Wk-Ma-JOS" secondAttribute="top" id="rDx-nr-qog"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RvB-4R-jla"/>
+                    <connections>
+                        <outlet property="mapView" destination="hwD-f5-ghd" id="xzG-PM-BdH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gnc-JA-i98" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="204"/>
         </scene>
         <!--Navigation Controller - Photographers-->
         <scene sceneID="PkL-aE-2Eo">
@@ -109,7 +143,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="GkS-Ug-MZf" kind="push" identifier="Show Photos by Photographer" id="mjF-vN-BeN"/>
+                                    <segue destination="VIu-zF-pxQ" kind="push" identifier="Show Map" id="aRX-dZ-QHg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

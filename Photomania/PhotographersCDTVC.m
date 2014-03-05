@@ -10,6 +10,7 @@
 #import "Photographer.h"
 #import "PhotoDatabaseAvailability.h"
 #import "PhotosByPhotographerCDTVC.h"
+#import "PhotosByPhotographerMapViewController.h"
 
 @implementation PhotographersCDTVC
 
@@ -47,7 +48,7 @@
     
     Photographer *photographer = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = photographer.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [photographer.photos count]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", (int)[photographer.photos count]];
     
     return cell;
 }
@@ -62,6 +63,9 @@
     if ([vc isKindOfClass:[PhotosByPhotographerCDTVC class]]) {
         PhotosByPhotographerCDTVC *pbpcdtvc = (PhotosByPhotographerCDTVC *)vc;
         pbpcdtvc.photographer = photographer;
+    } else if ([vc isKindOfClass:[PhotosByPhotographerMapViewController class]]) {
+        PhotosByPhotographerMapViewController *pbpmvc = (PhotosByPhotographerMapViewController *)vc;
+        pbpmvc.photographer = photographer;
     }
 }
 
