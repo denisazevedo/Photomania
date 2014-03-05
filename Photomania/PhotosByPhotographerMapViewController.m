@@ -9,6 +9,7 @@
 #import "PhotosByPhotographerMapViewController.h"
 #import <MapKit/MapKit.h>
 #import "Photo.h"
+#import "ImageViewController.h"
 
 @interface PhotosByPhotographerMapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -40,7 +41,35 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    [self updateLeftCalloutAccessoryViewInAnnotationView:view]; 
+    [self updateLeftCalloutAccessoryViewInAnnotationView:view];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    [self performSegueWithIdentifier:@"Show Photo" sender:view];
+}
+
+- (void)prepareViewController:(id)vc forSegue:(NSString *)segueIdentifier toShowAnnotation:(id <MKAnnotation>)annotation {
+    Photo *photo = nil;
+    if ([annotation isKindOfClass:[Photo class]]) {
+        photo = (Photo *)annotation;
+    }
+    if (photo) {
+        if (![segueIdentifier length] || [segueIdentifier isEqualToString:@"Show Photo"]) {
+            if ([vc isKindOfClass:[ImageViewController class]]) {
+                ImageViewController *ivc = (ImageViewController *)vc;
+                ivc.imageURL = [NSURL URLWithString:photo.imageURL];
+                ivc.title = photo.title;
+            }
+        }
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([sender isKindOfClass:[MKAnnotationView class]]) {
+        [self prepareViewController:segue.destinationViewController
+                           forSegue:segue.identifier
+                   toShowAnnotation:((MKAnnotationView *)sender).annotation];
+    }
 }
 
 - (void)updateLeftCalloutAccessoryViewInAnnotationView:(MKAnnotationView *)annotationView {

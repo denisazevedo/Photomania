@@ -86,6 +86,7 @@
                     <navigationItem key="navigationItem" id="RvB-4R-jla"/>
                     <connections>
                         <outlet property="mapView" destination="hwD-f5-ghd" id="xzG-PM-BdH"/>
+                        <segue destination="qJ6-R8-96o" kind="push" identifier="Show Photo" id="5Fp-f4-gAm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gnc-JA-i98" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,4 +251,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Fp-f4-gAm"/>
+    </inferredMetricsTieBreakers>
 </document>
