@@ -67,6 +67,9 @@
             [self prepareViewController:self.imageViewController forSegue:nil toShowAnnotation:autoSelectedPhoto];
         }
     }
+    for (Photo *p in self.photosByPhotographer) {
+        NSLog(@"photo: %@", p.title);
+    }
 }
 
 // see if we can find an ImageViewController to show the selected annotation's image
