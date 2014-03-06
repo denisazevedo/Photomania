@@ -18,24 +18,36 @@
             </objects>
             <point key="canvasLocation" x="-539" y="-131"/>
         </scene>
-        <!--Image View Controller-->
+        <!--Photos By Photographer Image View Controller-->
         <scene sceneID="B7v-Qd-qfB">
             <objects>
-                <viewController id="hMi-G0-Kux" customClass="ImageViewController" sceneMemberID="viewController">
+                <viewController id="hMi-G0-Kux" customClass="PhotosByPhotographerImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mMh-Qi-VTL"/>
                         <viewControllerLayoutGuide type="bottom" id="cRD-fX-fxn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jSy-nY-KIJ">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFM-oa-eWa">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="igK-2q-VfB">
+                                <rect key="frame" x="348" y="20" width="400" height="250"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="WUA-WU-3Wp"/>
+                                    <constraint firstAttribute="width" constant="400" id="nP5-ml-Qnn"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="wgP-ZY-FJM" kind="embed" id="sHo-Tj-mkw"/>
+                                </connections>
+                            </containerView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zNi-2M-TmB">
-                                <rect key="frame" x="366" y="494" width="37" height="37"/>
+                                <rect key="frame" x="366" y="462" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -44,12 +56,15 @@
                         <constraints>
                             <constraint firstItem="qFM-oa-eWa" firstAttribute="top" secondItem="jSy-nY-KIJ" secondAttribute="top" id="Bfv-E6-bAS"/>
                             <constraint firstAttribute="centerX" secondItem="zNi-2M-TmB" secondAttribute="centerX" id="Lxt-pU-mFd"/>
+                            <constraint firstItem="igK-2q-VfB" firstAttribute="top" secondItem="jSy-nY-KIJ" secondAttribute="top" constant="20" symbolic="YES" id="TKX-Ec-iY0"/>
                             <constraint firstAttribute="bottom" secondItem="qFM-oa-eWa" secondAttribute="bottom" id="XaZ-xV-uiu"/>
                             <constraint firstItem="qFM-oa-eWa" firstAttribute="leading" secondItem="jSy-nY-KIJ" secondAttribute="leading" id="dNA-iL-mkD"/>
+                            <constraint firstAttribute="trailing" secondItem="igK-2q-VfB" secondAttribute="trailing" constant="20" symbolic="YES" id="h3N-WD-nGs"/>
                             <constraint firstAttribute="trailing" secondItem="qFM-oa-eWa" secondAttribute="trailing" id="pZr-xS-587"/>
                             <constraint firstAttribute="centerY" secondItem="zNi-2M-TmB" secondAttribute="centerY" id="ylV-XB-C0K"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="2V9-c8-ndU">
                         <barButtonItem key="rightBarButtonItem" title="URL" id="dzA-FF-TRB">
                             <connections>
@@ -150,11 +165,11 @@
                         <viewControllerLayoutGuide type="bottom" id="aak-hh-88W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NI7-YV-1Jm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dfB-J8-OGc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="250"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                         </subviews>
@@ -173,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNC-qS-IVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1384" y="-595"/>
+            <point key="canvasLocation" x="2418" y="643"/>
         </scene>
         <!--PhotographersCDTVC-->
         <scene sceneID="42X-7j-qcp">
@@ -207,9 +222,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="wgP-ZY-FJM" kind="push" identifier="Show Map" id="KqN-IC-E3m"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
