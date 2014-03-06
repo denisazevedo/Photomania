@@ -64,9 +64,11 @@
     if ([vc isKindOfClass:[PhotosByPhotographerCDTVC class]]) {
         PhotosByPhotographerCDTVC *pbpcdtvc = (PhotosByPhotographerCDTVC *)vc;
         pbpcdtvc.photographer = photographer;
+    // we can also segue to a PhotosByPhotographerMapViewController
     } else if ([vc isKindOfClass:[PhotosByPhotographerMapViewController class]]) {
         PhotosByPhotographerMapViewController *pbpmvc = (PhotosByPhotographerMapViewController *)vc;
         pbpmvc.photographer = photographer;
+    // or a PhotosByPhotographerImageViewController
     } else if ([vc isKindOfClass:[PhotosByPhotographerImageViewController class]]) {
         PhotosByPhotographerImageViewController *pbpivc = (PhotosByPhotographerImageViewController *)vc;
         pbpivc.photographer = photographer;

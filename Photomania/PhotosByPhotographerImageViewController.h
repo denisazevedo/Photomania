@@ -11,6 +11,8 @@
 
 @interface PhotosByPhotographerImageViewController : ImageViewController
 
+// our Model
+// passed through to our embedded controller
 @property (nonatomic, strong) Photographer *photographer;
 
 @end

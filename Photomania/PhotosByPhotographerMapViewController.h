@@ -11,6 +11,8 @@
 
 @interface PhotosByPhotographerMapViewController : UIViewController
 
+// our Model
+// we will show all photos by this photographer on a map
 @property (nonatomic, strong) Photographer *photographer;
 
 @end
