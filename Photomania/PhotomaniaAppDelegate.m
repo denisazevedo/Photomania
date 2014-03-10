@@ -11,6 +11,7 @@
 #import "Photo+Flickr.h"
 #import "FlickrFetcher.h"
 #import "PhotoDatabaseAvailability.h"
+#import "Photographer+Create.h"
 
 // THIS FILE WANTS TO BE VERY WIDE BECAUSE IT HAS A LOT OF COMMENTS THAT ARE ATTACHED ONTO THE END OF LINES--MAKE THIS COMMENT FIT ON ONE LINE
 // (or turn off line wrapping)
@@ -114,7 +115,11 @@
 // we post a notification to let others know the context is available
 
 - (void)setPhotoDatabaseContext:(NSManagedObjectContext *)photoDatabaseContext {
+    
     _photoDatabaseContext = photoDatabaseContext;
+    
+    // Make sure "the user" Photographer exists at all times
+    if (photoDatabaseContext) [Photographer userInManagedObjectContext:photoDatabaseContext];
     
     // every time the context changes, we'll restart our timer
     // so kill (invalidate) the current one
