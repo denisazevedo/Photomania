@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A371A5E18CD504800A585F5 /* AddPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A371A5D18CD504800A585F5 /* AddPhotoViewController.m */; };
 		6A4DF64718C5372700A734FA /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF64618C5372700A734FA /* ImageViewController.m */; };
 		6A4DF64A18C538B600A734FA /* PhotosByPhotographerCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF64918C538B600A734FA /* PhotosByPhotographerCDTVC.m */; };
 		6A4DF64D18C63F1C00A734FA /* PhotosCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF64C18C63F1C00A734FA /* PhotosCDTVC.m */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A371A5C18CD504800A585F5 /* AddPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddPhotoViewController.h; path = Photomania/AddPhotoViewController.h; sourceTree = SOURCE_ROOT; };
+		6A371A5D18CD504800A585F5 /* AddPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddPhotoViewController.m; path = Photomania/AddPhotoViewController.m; sourceTree = SOURCE_ROOT; };
 		6A4DF64518C5372700A734FA /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewController.h; path = ../ImageViewController.h; sourceTree = "<group>"; };
 		6A4DF64618C5372700A734FA /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewController.m; path = ../ImageViewController.m; sourceTree = "<group>"; };
 		6A4DF64818C538B600A734FA /* PhotosByPhotographerCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotosByPhotographerCDTVC.h; path = ../PhotosByPhotographerCDTVC.h; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 		6AF93B0918C3A1ED009AF4B6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6A371A5C18CD504800A585F5 /* AddPhotoViewController.h */,
+				6A371A5D18CD504800A585F5 /* AddPhotoViewController.m */,
 				6A4DF64818C538B600A734FA /* PhotosByPhotographerCDTVC.h */,
 				6A4DF64918C538B600A734FA /* PhotosByPhotographerCDTVC.m */,
 				6AF9509F18C7C73C0004B185 /* PhotosByPhotographerMapViewController.h */,
@@ -388,6 +393,7 @@
 				6A4DF64A18C538B600A734FA /* PhotosByPhotographerCDTVC.m in Sources */,
 				6AF950A918C7CEBC0004B185 /* Photo+Annotation.m in Sources */,
 				6AF93AFA18C37704009AF4B6 /* Photographer.m in Sources */,
+				6A371A5E18CD504800A585F5 /* AddPhotoViewController.m in Sources */,
 				6AF950A618C7CBB20004B185 /* Photo.m in Sources */,
 				6AF93B0518C37904009AF4B6 /* FlickrFetcher.m in Sources */,
 				6AF93AF118C3756A009AF4B6 /* Photomania.xcdatamodeld in Sources */,
