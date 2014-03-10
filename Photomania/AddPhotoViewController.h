@@ -16,6 +16,6 @@
 @property (nonatomic, strong) Photographer *photographerTakingPhoto;
 
 //out
-@property (nonatomic, strong) Photo *addedPhoto;
+@property (nonatomic, readonly) Photo *addedPhoto;
 
 @end
