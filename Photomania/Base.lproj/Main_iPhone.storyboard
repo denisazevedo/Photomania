@@ -83,8 +83,11 @@
                             <constraint firstItem="hwD-f5-ghd" firstAttribute="top" secondItem="5Wk-Ma-JOS" secondAttribute="top" id="rDx-nr-qog"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RvB-4R-jla"/>
+                    <navigationItem key="navigationItem" id="RvB-4R-jla">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="FFP-Af-hO7"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addPhotoBarButtonItem" destination="FFP-Af-hO7" id="WKx-gO-gK9"/>
                         <outlet property="mapView" destination="hwD-f5-ghd" id="xzG-PM-BdH"/>
                         <segue destination="qJ6-R8-96o" kind="push" identifier="Show Photo" id="5Fp-f4-gAm"/>
                     </connections>

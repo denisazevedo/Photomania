@@ -10,11 +10,13 @@
 #import <MapKit/MapKit.h>
 #import "Photo+Annotation.h"
 #import "ImageViewController.h"
+#import "Photographer+Create.h"
 
 @interface PhotosByPhotographerMapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) NSArray *photosByPhotographer; //Of Photo
 @property (nonatomic, strong) ImageViewController *imageViewController; // can be nil
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addPhotoBarButtonItem;
 @end
 
 @implementation PhotosByPhotographerMapViewController
@@ -39,6 +41,23 @@
     self.title = photographer.name;
     self.photosByPhotographer = nil;
     [self updateMapViewAnnotations];
+    [self updateAddPhotoBarButtonItem];
+}
+
+- (void)updateAddPhotoBarButtonItem {
+    if (self.addPhotoBarButtonItem) {
+        BOOL canAddPhoto = self.photographer.isUser;
+        NSMutableArray *rightBarButtonItems = [self.navigationItem.rightBarButtonItems mutableCopy];
+        if (!rightBarButtonItems) rightBarButtonItems = [[NSMutableArray alloc] init];
+        
+        NSUInteger addPhotoBarButtonItemIndex = [rightBarButtonItems indexOfObject:self.addPhotoBarButtonItem];
+        if (addPhotoBarButtonItemIndex == NSNotFound) {
+            if (canAddPhoto) [rightBarButtonItems addObject:self.addPhotoBarButtonItem];
+        } else {
+            if (!canAddPhoto) [rightBarButtonItems removeObject:self.addPhotoBarButtonItem];
+        }
+        self.navigationItem.rightBarButtonItems = rightBarButtonItems;
+    }
 }
 
 // when the mapView outlet gets set, set its delegate to ourself
