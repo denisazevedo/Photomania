@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate>
+@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *subtitleTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) NSURL *thumbnailURL;
 @property (nonatomic, strong, readwrite) Photo *addedPhoto;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 
 @implementation AddPhotoViewController
@@ -36,11 +37,19 @@
     return NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
     if (![self.class canAddPhoto]) {
         [self fatalAlert:@"Sorry, this device cannot add a photo."];
+    } else {
+        [self.locationManager startUpdatingLocation];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -105,6 +114,20 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     [self cancel];
+}
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager = locationManager;
+    }
+    return _locationManager;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.location = [locations lastObject];
 }
 
 - (void)setImage:(UIImage *)image {
