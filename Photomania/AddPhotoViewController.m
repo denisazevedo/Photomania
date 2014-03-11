@@ -8,10 +8,10 @@
 
 #import "AddPhotoViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-#import "UIImage+CS193p.h"
+#import <MobileCoreServices/MobileCoreServices.h> // kUTTypeImage
+#import "UIImage+CS193p.h"                        // thumbnail and filtering methods
 
-@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
+@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate> //UINavigationControllerDelegate
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *subtitleTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -25,6 +25,10 @@
 
 @implementation AddPhotoViewController
 
+#pragma mark - Capabilities
+
+// probably this should be public
+// then presenters could check first to see if it's even worth the effort
 + (BOOL)canAddPhoto {
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -38,14 +42,39 @@
     return NO;
 }
 
+#pragma mark - Target/Action
+
+- (IBAction)cancel {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)takePhoto {
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder]; // make "return key" hide keyboard
+    return YES;
+}
+
+#pragma mark - View Controller Lifecycle
+
 - (void)viewDidAppear:(BOOL)animated {
-    
     [super viewDidAppear:animated];
-    if (![self.class canAddPhoto]) {
+    
+    if (![[self class] canAddPhoto]) {
         [self fatalAlert:@"Sorry, this device cannot add a photo."];
-    } else {
+    } else { // should check that location services are enabled first
         [self.locationManager startUpdatingLocation];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // this will happen when we leave heap, but just to be sure ...
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)viewDidLoad {
@@ -53,15 +82,23 @@
     self.image = [UIImage imageNamed:@"flower.jpg"];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.locationManager stopUpdatingLocation];
+#pragma mark - Location
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager = locationManager;
+    }
+    return _locationManager;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.location = [locations lastObject];
 }
+
+#pragma mark - Navigation
 
 #define UNWIND_SEGUE_IDENTIFIER @"Do Add Photo"
 
@@ -102,6 +139,8 @@
     }
 }
 
+#pragma mark - Alerts
+
 - (void)alert:(NSString *)msg {
     [[[UIAlertView alloc] initWithTitle:@"Add Photo"
                                message:msg
@@ -113,7 +152,7 @@
 - (void)fatalAlert:(NSString *)msg {
     [[[UIAlertView alloc] initWithTitle:@"Add Photo"
                                 message:msg
-                               delegate:self
+                               delegate:self // we're going to cancel when dismissed
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
 }
@@ -122,25 +161,7 @@
     [self cancel];
 }
 
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager = locationManager;
-    }
-    return _locationManager;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    self.location = [locations lastObject];
-}
-
-- (NSURL *)uniqueDocumentURL {
-    NSArray *documentDirectories = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    NSString *unique = [NSString stringWithFormat:@"%.0f", floor([NSDate timeIntervalSinceReferenceDate])];
-    return [[documentDirectories firstObject] URLByAppendingPathComponent:unique];
-}
+#pragma mark - Image Properties
 
 - (NSURL *)imageURL {
     if (!_imageURL && self.image) {
@@ -172,6 +193,8 @@
 
 - (void)setImage:(UIImage *)image {
     self.imageView.image = image;
+    
+    // when image is changed, we must delete files we've created (if any)
     [[NSFileManager defaultManager] removeItemAtURL:_imageURL error:NULL];
     [[NSFileManager defaultManager] removeItemAtURL:_thumbnailURL error:NULL];
     self.imageURL = nil;
@@ -182,11 +205,10 @@
     return self.imageView.image;
 }
 
-- (IBAction)cancel {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (IBAction)takePhoto {
+- (NSURL *)uniqueDocumentURL {
+    NSArray *documentDirectories = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSString *unique = [NSString stringWithFormat:@"%.0f", floor([NSDate timeIntervalSinceReferenceDate])];
+    return [[documentDirectories firstObject] URLByAppendingPathComponent:unique];
 }
 
 @end

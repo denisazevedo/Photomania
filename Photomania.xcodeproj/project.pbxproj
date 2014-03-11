@@ -66,7 +66,7 @@
 		6A4DF64F18C644DD00A734FA /* URLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = URLViewController.m; path = ../URLViewController.m; sourceTree = "<group>"; };
 		6A88B99418CE840E00570EAC /* UIImage+CS193p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CS193p.h"; sourceTree = "<group>"; };
 		6A88B99518CE840E00570EAC /* UIImage+CS193p.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CS193p.m"; sourceTree = "<group>"; };
-		6A88B99718CE87EA00570EAC /* flower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower.jpg; path = ../flower.jpg; sourceTree = "<group>"; };
+		6A88B99718CE87EA00570EAC /* flower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower.jpg; sourceTree = "<group>"; };
 		6AF93AB418C36C9E009AF4B6 /* Photomania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photomania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF93AB718C36C9E009AF4B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6AF93AB918C36C9E009AF4B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };

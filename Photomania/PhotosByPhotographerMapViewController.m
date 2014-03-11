@@ -42,7 +42,7 @@
     self.title = photographer.name;
     self.photosByPhotographer = nil;
     [self updateMapViewAnnotations];
-    [self updateAddPhotoBarButtonItem];
+    [self updateAddPhotoBarButtonItem]; // show "camera" button only if self.photographer.isUser
 }
 
 - (void)updateAddPhotoBarButtonItem {
@@ -55,7 +55,7 @@
         if (addPhotoBarButtonItemIndex == NSNotFound) {
             if (canAddPhoto) [rightBarButtonItems addObject:self.addPhotoBarButtonItem];
         } else {
-            if (!canAddPhoto) [rightBarButtonItems removeObject:self.addPhotoBarButtonItem];
+            if (!canAddPhoto) [rightBarButtonItems removeObjectAtIndex:addPhotoBarButtonItemIndex];
         }
         self.navigationItem.rightBarButtonItems = rightBarButtonItems;
     }
@@ -159,7 +159,7 @@
             photo = (Photo *)annotationView.annotation;
         }
         if (photo) {
-#warning Blocking the main queue!
+#warning Blocking main queue!
             imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photo.thumbnailURL]]];
         }
     }
@@ -192,6 +192,7 @@
     }
 }
 
+// this is called when AddPhotoViewController unwinds back to us
 - (IBAction)addedPhoto:(UIStoryboardSegue *)segue {
     if ([segue.sourceViewController isKindOfClass:[AddPhotoViewController class]]) {
         AddPhotoViewController *apvc = (AddPhotoViewController *)segue.sourceViewController;
