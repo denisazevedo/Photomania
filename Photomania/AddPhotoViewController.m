@@ -9,6 +9,7 @@
 #import "AddPhotoViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "UIImage+CS193p.h"
 
 @interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -45,6 +46,11 @@
     } else {
         [self.locationManager startUpdatingLocation];
     }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.image = [UIImage imageNamed:@"flower.jpg"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -130,8 +136,46 @@
     self.location = [locations lastObject];
 }
 
+- (NSURL *)uniqueDocumentURL {
+    NSArray *documentDirectories = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSString *unique = [NSString stringWithFormat:@"%.0f", floor([NSDate timeIntervalSinceReferenceDate])];
+    return [[documentDirectories firstObject] URLByAppendingPathComponent:unique];
+}
+
+- (NSURL *)imageURL {
+    if (!_imageURL && self.image) {
+        NSURL *url = [self uniqueDocumentURL];
+        if (url) {
+            NSData *imageData = UIImageJPEGRepresentation(self.image, 1.0);
+            if ([imageData writeToURL:url atomically:YES]) {
+                _imageURL = url;
+            }
+        }
+    }
+    return _imageURL;
+}
+
+- (NSURL *)thumbnailURL {
+    NSURL *url = [self.imageURL URLByAppendingPathExtension:@"thumbnail"];
+    if (![_thumbnailURL isEqual:url]) {
+        _thumbnailURL = nil;
+        if (url) {
+            UIImage *thumbnail = [self.image imageByScalingToSize:(CGSizeMake(75, 75))];
+            NSData *imageData = UIImageJPEGRepresentation(thumbnail, 0.5);
+            if ([imageData writeToURL:url atomically:YES]) {
+                _thumbnailURL = url;
+            }
+        }
+    }
+    return _thumbnailURL;
+}
+
 - (void)setImage:(UIImage *)image {
     self.imageView.image = image;
+    [[NSFileManager defaultManager] removeItemAtURL:_imageURL error:NULL];
+    [[NSFileManager defaultManager] removeItemAtURL:_thumbnailURL error:NULL];
+    self.imageURL = nil;
+    self.thumbnailURL = nil;
 }
 
 - (UIImage *)image {
