@@ -16,6 +16,8 @@
 
 @implementation PhotosByPhotographerImageViewController
 
+#warning need to add the AddPhotoViewController to iPad
+
 - (void)setPhotographer:(Photographer *)photographer {
     _photographer = photographer;
     self.title = photographer.name;
