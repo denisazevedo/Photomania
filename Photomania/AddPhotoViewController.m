@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSURL *thumbnailURL;
 @property (nonatomic, strong, readwrite) Photo *addedPhoto;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic) NSInteger locationErrorCode;
 @end
 
 @implementation AddPhotoViewController
@@ -99,6 +100,10 @@
     self.location = [locations lastObject];
 }
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    self.locationErrorCode = error.code;
+}
+
 #pragma mark - Navigation
 
 #define UNWIND_SEGUE_IDENTIFIER @"Do Add Photo"
@@ -128,6 +133,7 @@
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
     if ([identifier isEqualToString:UNWIND_SEGUE_IDENTIFIER]) {
         if (!self.image) {
             [self alert:@"No photo taken!"];
@@ -135,7 +141,20 @@
         } else if (![self.titleTextField.text length]) {
             [self alert:@"Title required!"];
             return NO;
-        } else {
+        } else if (!self.location) {
+            switch (self.locationErrorCode) {
+                case kCLErrorLocationUnknown:
+                    [self alert:@"Couldn't figure out where this photo was taken (yet)."]; break;
+                case kCLErrorDenied:
+                    [self alert:@"Location Services disabled under Privacy in Settings application."]; break;
+                case kCLErrorNetwork:
+                    [self alert:@"Can't figure out where this photo is being taken. Verify your connection to the network."]; break;
+                default:
+                    [self alert:@"Can't figure out where this photo is being taken, sorry."]; break;
+            }
+            return NO;
+            
+        } else { // should check location & imageURL too!
             return YES;
         }
     } else {
