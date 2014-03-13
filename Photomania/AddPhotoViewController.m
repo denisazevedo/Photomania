@@ -45,6 +45,7 @@
 #pragma mark - Target/Action
 
 - (IBAction)cancel {
+    self.image = nil; // cleans up any temporary files
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -119,6 +120,9 @@
             photo.thumbnailURL = [self.thumbnailURL absoluteString];
             
             self.addedPhoto = photo;
+            
+            self.imageURL = nil; // this URL has been used now
+            self.thumbnailURL = nil;
         }
     }
 }
