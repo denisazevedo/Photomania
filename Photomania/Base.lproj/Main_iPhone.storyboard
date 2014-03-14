@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1te-9b-Cqd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1te-9b-Cqd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Photos By PhotographerCDTVC - Photo-->
@@ -178,6 +178,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ucm-zo-H82">
+                                <rect key="frame" x="219" y="134" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Filter Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterImage" destination="Mj8-zv-YVQ" eventType="touchUpInside" id="QlA-ML-M5F"/>
+                                    <action selector="takePhoto" destination="Mj8-zv-YVQ" eventType="touchUpInside" id="Gix-iM-hyL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -188,6 +199,7 @@
                             <constraint firstAttribute="trailing" secondItem="KPF-fi-uPN" secondAttribute="trailing" constant="20" symbolic="YES" id="Fl1-pY-wRZ"/>
                             <constraint firstItem="PxA-zX-KiQ" firstAttribute="trailing" secondItem="VQI-6W-ZxK" secondAttribute="trailing" id="G4r-DU-2rI"/>
                             <constraint firstItem="BEh-JT-SEy" firstAttribute="top" secondItem="V1V-ZO-pr3" secondAttribute="top" constant="20" symbolic="YES" id="HK8-6U-2GB"/>
+                            <constraint firstItem="Ucm-zo-H82" firstAttribute="baseline" secondItem="bX9-ZX-4jR" secondAttribute="baseline" id="IPh-Pw-X7l"/>
                             <constraint firstItem="Qed-7u-4fh" firstAttribute="top" secondItem="bX9-ZX-4jR" secondAttribute="bottom" constant="8" symbolic="YES" id="KIb-Vl-2ag"/>
                             <constraint firstItem="PxA-zX-KiQ" firstAttribute="centerY" secondItem="F0R-3J-h4q" secondAttribute="centerY" constant="0.5" id="KYz-X4-kNk"/>
                             <constraint firstAttribute="trailing" secondItem="Qed-7u-4fh" secondAttribute="trailing" constant="20" symbolic="YES" id="KuR-Ex-C9P"/>
@@ -197,6 +209,7 @@
                             <constraint firstItem="bX9-ZX-4jR" firstAttribute="leading" secondItem="V1V-ZO-pr3" secondAttribute="leading" constant="20" symbolic="YES" id="dWD-6P-31V"/>
                             <constraint firstItem="bX9-ZX-4jR" firstAttribute="top" secondItem="VQI-6W-ZxK" secondAttribute="bottom" constant="8" symbolic="YES" id="h8q-ds-xyC"/>
                             <constraint firstItem="BEh-JT-SEy" firstAttribute="leading" secondItem="V1V-ZO-pr3" secondAttribute="leading" constant="20" symbolic="YES" id="lNb-LJ-6wC"/>
+                            <constraint firstItem="Ucm-zo-H82" firstAttribute="trailing" secondItem="VQI-6W-ZxK" secondAttribute="trailing" id="mNI-jX-Mse"/>
                             <constraint firstItem="VQI-6W-ZxK" firstAttribute="leading" secondItem="RMU-7l-e9H" secondAttribute="trailing" constant="8" symbolic="YES" id="p5E-mC-U2z"/>
                             <constraint firstItem="PxA-zX-KiQ" firstAttribute="leading" secondItem="VQI-6W-ZxK" secondAttribute="leading" id="vDP-ET-fEy"/>
                             <constraint firstItem="KPF-fi-uPN" firstAttribute="centerY" secondItem="BEh-JT-SEy" secondAttribute="centerY" id="w0R-Zj-CE7"/>

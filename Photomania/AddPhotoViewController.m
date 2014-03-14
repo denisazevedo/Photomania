@@ -11,7 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h> // kUTTypeImage
 #import "UIImage+CS193p.h"                        // thumbnail and filtering methods
 
-@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *subtitleTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -221,7 +221,7 @@
     if (![_thumbnailURL isEqual:url]) {
         _thumbnailURL = nil;
         if (url) {
-            UIImage *thumbnail = [self.image imageByScalingToSize:(CGSizeMake(75, 75))];
+            UIImage *thumbnail = [self.image imageByScalingToSize:CGSizeMake(75, 75)];
             NSData *imageData = UIImageJPEGRepresentation(thumbnail, 0.5);
             if ([imageData writeToURL:url atomically:YES]) {
                 _thumbnailURL = url;
@@ -249,6 +249,39 @@
     NSArray *documentDirectories = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
     NSString *unique = [NSString stringWithFormat:@"%.0f", floor([NSDate timeIntervalSinceReferenceDate])];
     return [[documentDirectories firstObject] URLByAppendingPathComponent:unique];
+}
+
+#pragma mark - Filter Image
+
+- (IBAction)filterImage {
+    if (!self.image) {
+        [self alert:@"You must take a photo first!"];
+    } else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filter Image"
+                                                                 delegate:self
+                                                        cancelButtonTitle:nil
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:nil];
+        for (NSString *filter in [self filters]) {
+            [actionSheet addButtonWithTitle:filter];
+        }
+        [actionSheet addButtonWithTitle:@"Cancel"]; // put at bottom (don't do at all on iPad)
+        
+        [actionSheet showInView:self.view]; // different on iPad
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+    NSString *filterName = [self filters][choice];
+    self.image = [self.image imageByApplyingFilterNamed:filterName];
+}
+
+- (NSDictionary *)filters {
+    return @{@"Chrome" : @"CIPhotoEffectChrome",
+             @"Blur"   : @"CIGaussianBlur",
+             @"Noir"   : @"CIPhotoEffectNoir",
+             @"Fade"   : @"CIPhotoEffectFade"};
 }
 
 @end
