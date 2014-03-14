@@ -11,7 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h> // kUTTypeImage
 #import "UIImage+CS193p.h"                        // thumbnail and filtering methods
 
-@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate> //UINavigationControllerDelegate
+@interface AddPhotoViewController () <UITextFieldDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *subtitleTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -51,6 +51,23 @@
 }
 
 - (IBAction)takePhoto {
+    UIImagePickerController *uiipc = [[UIImagePickerController alloc] init];
+    uiipc.delegate = self;
+    uiipc.mediaTypes = @[(NSString *)kUTTypeImage];
+    uiipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+    uiipc.allowsEditing = YES;
+    [self presentViewController:uiipc animated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    if (!image) image = info[UIImagePickerControllerOriginalImage];
+    self.image = image;
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - UITextFieldDelegate
